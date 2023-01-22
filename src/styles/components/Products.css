@@ -3,12 +3,15 @@
   grid-gap: 1.5rem;
   grid-row-gap: 1.5em;
   display: grid;
+  justify-items: center;
 }
 .Products-item {
   text-decoration: none;
   box-shadow: 8px 14px 38px rgba(39,44,49,0.06), 1px 3px 8px rgba(39,44,49,0.03);
   border-radius: 5px;
   margin: 0 0 20px 0;
+  min-width: 240px;
+  max-width: 240px;
   position: relative;
 }
 .Products-item-info {
@@ -46,4 +49,15 @@
 }
 .Products-item button:hover {
   background-color: rgba(39,44,49,0.06);
+}
+
+@media (max-width: 810px) {
+  .Products-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .Products-items {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

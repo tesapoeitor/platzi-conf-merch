@@ -7,7 +7,6 @@ import '../styles/components/Header.css'
 const Header = () => {
   const { state } = useContext(AppContext)!
   const { cart } = state
-  console.log(cart)
 
   return (
     <header className="Header">

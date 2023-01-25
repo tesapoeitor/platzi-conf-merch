@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+
 import { Product } from './Product'
 import { Product as ProductType } from '../Types/Product'
 import { AppContext } from '../context/AppContext'
@@ -20,7 +21,7 @@ const Products = () => {
             key={product.id} 
             product={product} 
             handleAddToCart={handleAddToCart}
-            />
+          />
         ))}
       </div>
     </div>

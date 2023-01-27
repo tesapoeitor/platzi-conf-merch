@@ -1,11 +1,18 @@
 import { useState } from "react"
 
 import { AppContextType } from "../Types/AppContextType"
+import { Buyer } from "../Types/Buyer"
 import { Product } from "../Types/Product"
 import InitialState from "../InitialState"
 
+interface State {
+    cart: Product[], 
+    products: Product[], 
+    buyer: Buyer[]
+}
+
 const useInitialState = (): AppContextType => {
-    const [state, setState] = useState<{cart: Product[], products: Product[]}>(InitialState)
+    const [state, setState] = useState<State>(InitialState)
 
     const addToCart = (payload: Product) => {
         setState({
@@ -21,10 +28,18 @@ const useInitialState = (): AppContextType => {
         })
     }
 
+    const addToBuyer = (payload: Buyer) => {
+        setState({
+            ...state,
+            buyer: [...state.buyer, payload]
+        })
+    }
+
     return {
         state,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        addToBuyer
     }
 }
 

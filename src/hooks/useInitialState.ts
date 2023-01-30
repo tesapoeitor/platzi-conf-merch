@@ -8,7 +8,8 @@ import InitialState from "../InitialState"
 interface State {
     cart: Product[], 
     products: Product[], 
-    buyer: Buyer[]
+    buyer: Buyer[],
+    order: any[]
 }
 
 const useInitialState = (): AppContextType => {
@@ -35,11 +36,19 @@ const useInitialState = (): AppContextType => {
         })
     }
 
+    const addNewOrder = (payload: any) => {
+        setState({
+            ...state,
+            order: [...state.order, payload]
+        })
+    }
+
     return {
         state,
         addToCart,
         removeFromCart,
-        addToBuyer
+        addToBuyer,
+        addNewOrder
     }
 }
 

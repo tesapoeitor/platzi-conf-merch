@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react'
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 
 import { AppContext } from '../context/AppContext'
 import '../styles/components/Information.css'
@@ -9,6 +9,7 @@ const Information = () => {
   const { state, addToBuyer } = useContext(AppContext)!
   const { cart } = state
   const form = useRef(null)
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
     if(form.current) {
@@ -25,6 +26,7 @@ const Information = () => {
         "phone": formData.get("phone")
       } as Buyer
       addToBuyer(buyer)
+      navigate("/checkout/payment")
     }
   }
 

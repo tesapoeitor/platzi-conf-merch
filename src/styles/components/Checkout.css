@@ -55,3 +55,18 @@
 a {
   text-decoration: none;
 }
+
+@media (max-width: 600px) {
+  .Checkout {
+    display: block;
+  }
+  .Checkout-sidebar h3 {
+    margin-top: 20px;
+  }
+  .Checkout-sidebar button {
+    max-width: 184px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+}

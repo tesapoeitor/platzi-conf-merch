@@ -1,15 +1,36 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useNavigate } from "react-router-dom"
 
+import { SEO } from '../components/SEO'
 import { AppContext } from '../context/AppContext'
 import '../styles/components/Information.css'
 import { Buyer } from '../Types/Buyer'
 
 const Information = () => {
   const { state, addToBuyer } = useContext(AppContext)!
+  const [validatedForm, setValidateForm] = useState(false)
   const { cart } = state
   const form = useRef(null)
   const navigate = useNavigate()
+
+  const handleFormValidation = () => {
+    if(form.current) {
+      const formData = new FormData(form.current)
+
+      const name = formData.get("name")
+      const email = formData.get("email")
+      const address = formData.get("address")
+      const city = formData.get("city")
+      const country = formData.get("country")
+      const phone = formData.get("phone")
+
+      if(name && email && address && city && country && phone) {
+        setValidateForm(true)
+      } else {
+        setValidateForm(false)
+      }
+    }
+  }
 
   const handleSubmit = () => {
     if(form.current) {
@@ -32,21 +53,24 @@ const Information = () => {
 
   return (
     <section className="Information">
+      <SEO
+        title='Information'
+      />
       <div className="Information-content">
         <div className="Information-head">
           <h2>Información de contacto:</h2>
         </div>
         <div className="Information-form">
           <form ref={form}>
-            <input required type="text" placeholder="Nombre completo" name="name" />
-            <input required type="email" placeholder="Correo Electrónico" name="email" />
-            <input required type="text" placeholder="Dirección" name="address" />
-            <input required type="text" placeholder="Apto" name="apto" />
-            <input required type="text" placeholder="Ciudad" name="city" />
-            <input required type="text" placeholder="País" name="country" />
-            <input required type="text" placeholder="Estado" name="state" />
-            <input required type="text" placeholder="Código postal" name="cp" />
-            <input required type="tel" placeholder="Teléfono" name="phone" />
+            <input onChange={handleFormValidation} type="text" placeholder="Nombre completo" name="name" />
+            <input onChange={handleFormValidation} type="email" placeholder="Correo Electrónico" name="email" />
+            <input onChange={handleFormValidation} type="text" placeholder="Dirección" name="address" />
+            <input type="text" placeholder="Apto" name="apto" />
+            <input onChange={handleFormValidation} type="text" placeholder="Ciudad" name="city" />
+            <input onChange={handleFormValidation} type="text" placeholder="País" name="country" />
+            <input type="text" placeholder="Estado" name="state" />
+            <input type="text" placeholder="Código postal" name="cp" />
+            <input onChange={handleFormValidation} type="tel" placeholder="Teléfono" name="phone" />
           </form>
         </div>
         <div className="Information-buttons">
@@ -56,7 +80,12 @@ const Information = () => {
             </Link>
           </div>
           <div className="Information-next">
-            <button type='button' onClick={handleSubmit}>
+            <button 
+              type='button' 
+              onClick={handleSubmit}
+              disabled={!validatedForm}
+              className={validatedForm ? "" : "disable"}
+            >
               Pagar
             </button>
           </div>

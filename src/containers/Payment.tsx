@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
 
+import { SEO } from "../components/SEO"
+import { CreditCard } from "../components/CreditCard"
 import { AppContext } from '../context/AppContext'
 import { Product } from '../Types/Product'
 import { PaymentDetails } from "../Types/PaymentDetails"
@@ -40,6 +42,9 @@ const Payment = () => {
 
   return (
     <section className="Payment">
+      <SEO
+        title='Payment'
+      />
       {handleSumTotal() <= 0 && <Navigate to={"/"}/>}
       <div className="Payment-content">
         <h3>Resumen del pedido:</h3>
@@ -55,6 +60,8 @@ const Payment = () => {
             </div>
           </div>
         ))}
+        <h3 style={{marginTop: "20px"}}>{`Total Pedido: $ ${handleSumTotal()}`}</h3>
+        <CreditCard/>
         <div className="Payment-button">
           <PayPalScriptProvider options={options}>
             <PayPalButtons

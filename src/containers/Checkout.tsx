@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from "react-router-dom"
 
+import { SEO } from "../components/SEO"
 import { AppContext } from '../context/AppContext'
 import { Product } from '../Types/Product'
 import '../styles/components/Checkout.css'
@@ -21,6 +22,9 @@ const Checkout = () => {
 
   return (
     <div className="Checkout">
+      <SEO
+        title='CheckOut'
+      />
       <div className="Checkout-content">
         {cart.length > 0 ? <h3>Lista de Pedidos:</h3> : <h3>Sin pedidos...😢</h3>}
         {cart.length > 0 && cart.map((product, index) => (

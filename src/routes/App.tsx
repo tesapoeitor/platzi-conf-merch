@@ -1,5 +1,6 @@
 import React from 'react'
 import { HashRouter, Routes, Route} from "react-router-dom"
+import { HelmetProvider } from "react-helmet-async"
 
 import { Home } from "../containers/Home"
 import { Checkout } from "../containers/Checkout"
@@ -15,18 +16,20 @@ const App = () => {
   const initialState = useInitialState()
   return (
     <AppContext.Provider value={initialState}>
-      <HashRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/checkout/information" element={<Information />} />
-            <Route path="/checkout/payment" element={<Payment />} />
-            <Route path="/checkout/success" element={<Success />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </Layout>
-      </HashRouter>
+      <HelmetProvider>
+        <HashRouter>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/checkout/information" element={<Information />} />
+              <Route path="/checkout/payment" element={<Payment />} />
+              <Route path="/checkout/success" element={<Success />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </Layout>
+        </HashRouter>
+      </HelmetProvider>
     </AppContext.Provider>
   );
 }

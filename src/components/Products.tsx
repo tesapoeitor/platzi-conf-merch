@@ -1,4 +1,6 @@
 import React, { useContext } from 'react'
+import toastr from "toastr"
+import "toastr/build/toastr.min.css"
 
 import { Product } from './Product'
 import { Product as ProductType } from '../Types/Product'
@@ -11,6 +13,8 @@ const Products = () => {
 
   const handleAddToCart = (product: ProductType) => () => {
     addToCart(product)
+    toastr.options.timeOut= 1500 
+    toastr.success("Agregado al carrito")
   }
 
   return (

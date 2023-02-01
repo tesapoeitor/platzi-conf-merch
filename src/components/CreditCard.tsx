@@ -10,6 +10,7 @@ const CreditCard = () => {
             <p><strong>Número de tarjeta:</strong> 4032031356467380</p>
             <p><strong>Fecha de caducidad:</strong> 11/2026</p>
             <p><strong>CVV:</strong> 110</p>
+            <p><strong>Código postal:</strong> 1113</p>
         </section>
     )
 }
